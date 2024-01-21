@@ -1,48 +1,36 @@
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int N = sc.nextInt();
+        int N = Integer.parseInt(br.readLine());
 
-        Person[] per = new Person[N];
+        StringBuilder[] person = new StringBuilder[201]; // 나이 200세까지
 
-        for (int i = 0; i < N; i++) {
-            per[i] = new Person(sc.nextInt(), sc.next());
+        for (int i = 0; i < person.length; i++) {
+            person[i] = new StringBuilder(); // 각 인덱스에 StringBuilder 생성
         }
 
-        Arrays.sort(per, new Comparator<Person>() {
-            @Override
-            public int compare(Person o1, Person o2) {
-                return o1.age - o2.age;
-            }
-        });
+        for (int i = 0; i < N; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+
+            int age = Integer.parseInt(st.nextToken());
+            String name = st.nextToken();
+            // 나이를 인덱스로 하는 카운팅 정렬
+            person[age].append(age).append(" ").append(name).append('\n');
+        }
 
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < N; i++) {
-            sb.append(per[i]);
+        for(StringBuilder val : person){
+            sb.append(val);
         }
 
         System.out.println(sb);
-
-    }
-
-    public static class Person{
-        int age;
-        String name;
-
-        public Person(int age, String name){
-            this.age = age;
-            this.name = name;
-        }
-
-        public String toString(){
-            return age + " " + name + '\n';
-        }
     }
 }
