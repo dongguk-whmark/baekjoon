@@ -1,3 +1,6 @@
+// 백준 2178 미로 탐색. 자바 풀이
+// 2024-03-11 01:29
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
